@@ -42,37 +42,16 @@ Losing essentials on campus—whether it's an ID card, earphones, or a notebook�
 ```text
 Lost & Found Manager/
 ├── screenshots/
-│   ├── 01_Main_Menu.png
-│   ├── 02_User_Registration.png
-│   ├── 03_Lost_Item_Report(1).png
-│   ├── 03_Lost_Item_Report(2).png
-│   ├── 04_Found_Item_Report(1).png
-│   ├── 04_Found_Item_Report(2).png
-│   ├── 05_Search_Items.png
-│   ├── 06_Possible_Match.png
-│   ├── 07_Claim_Submission.png
-│   ├── 08_Data_Persistence.png
-│   └── 09_Input_Validation.png
-│
 ├── src/
+│   ├── data/
+│   │   ├── users.dat
+│   │   ├── lost_items.dat
+│   │   ├── found_items.dat
+│   │   └── claims.dat
 │   ├── model/
-│   │   ├── User.java
-│   │   ├── Item.java
-│   │   ├── LostItem.java
-│   │   ├── FoundItem.java
-│   │   └── Claim.java
-│   │
 │   ├── service/
-│   │   ├── UserService.java
-│   │   ├── ItemService.java
-│   │   ├── MatchingService.java
-│   │   └── ClaimService.java
-│   │
 │   ├── util/
-│   │   └── FileManager.java
-│   │
 │   └── Main.java
-│
 ├── README.md
 ├── statement.md
 └── .gitignore
