@@ -1,54 +1,59 @@
 # Lost & Found Manager
 
-## 1. Project Overview
-
-**Lost & Found Manager** is a command-line Java application designed to help students report, search, match, and claim lost and found items within a campus environment.
-
-The system provides a structured way to record lost items and found items instead of depending on informal communication.
+A simple, practical command-line tool written in Java to help college students report, track, and reclaim lost belongings across campus.
 
 ---
 
-## 2. Problem Statement
+## 1. About the Project
 
-Students frequently lose personal belongings such as electronics, books, ID cards, bags, keys, and accessories on campus. Finding these items through informal messages or announcements can be difficult and time-consuming.
+Losing essentials on campus—whether it's an ID card, earphones, or a notebook—is a common headache. Most recovery efforts depend on scattered WhatsApp groups or unorganized notice boards where details get buried quickly.
 
-This project provides a centralized command-line system where users can register, report lost or found items, search records, identify possible matches, and submit claims.
-
----
-
-## 3. Features
-
-- User registration
-- Report lost items
-- Report found items
-- View lost items
-- View found items
-- Search items using keywords
-- Automatic possible-match calculation
-- Claim management
-- Approve or reject claims
-- Input validation
-- Persistent data storage using Java file I/O
+**Lost & Found Manager** replaces that chaos with an organized, console-based system. It lets students log missing items, record found items, look up existing listings, check automated match suggestions, and manage ownership claims in one reliable place.
 
 ---
 
-## 4. Technologies Used
+## 2. Key Features
 
-- **Language:** Java (JDK 17+)
-- **Collections:** Java Collections Framework (`ArrayList`, etc.)
-- **Persistence:** Java File I/O & Object Serialization
-- **Interface:** Command Line Interface (CLI)
-- **Version Control:** Git and GitHub
+- **User Accounts:** Simple registration system to keep reports tied to specific students.
+- **Item Logging:** Separate flows to file lost or found items with details like name, category, color, and location.
+- **Search & Browse:** Filter through logged items quickly using keywords.
+- **Smart Matching Engine:** Compares lost and found listings attribute-by-attribute to flag likely matches automatically.
+- **Claim Workflow:** Users can stake a claim on a found item, which can then be reviewed and marked approved or rejected.
+- **Persistent Storage:** Saves all records directly to disk so nothing disappears when the terminal closes.
+- **Robust Input Checks:** Handles empty lines, bad numbers, and invalid menu inputs smoothly without crashing.
 
 ---
 
-## 5. Project Structure
+## 3. Tech Stack & Core Concepts
+
+- **Language:** Java (JDK 17 or higher)
+- **Data Structures:** Java Collections (`ArrayList`)
+- **Storage:** Standard Java File I/O (`ObjectOutputStream` & `ObjectInputStream`)
+- **Architecture / OOP Concepts:**
+  - Encapsulation (data modeling with getters/setters)
+  - Inheritance & Polymorphism (`Item` parent class extended by `LostItem` and `FoundItem`)
+  - Modular package structure (`model`, `service`, `util`)
+  - Custom exception & edge-case handling
+
+---
+
+## 4. Project Structure
 
 ```text
 Lost & Found Manager/
-├── data/
-├── docs/
 ├── screenshots/
+│   ├── 01_Main_Menu.png
+│   ├── 02_User_Registration.png
+│   ├── 03_Lost_Item_Report(1).png
+│   ├── 03_Lost_Item_Report(2).png
+│   ├── 04_Found_Item_Report(1).png
+│   ├── 04_Found_Item_Report(2).png
+│   ├── 05_Search_Items.png
+│   ├── 06_Possible_Match.png
+│   ├── 07_Claim_Submission.png
+│   ├── 08_Data_Persistence.png
+│   └── 09_Input_Validation.png
+│
 ├── src/
 │   ├── model/
 │   │   ├── User.java
@@ -56,107 +61,111 @@ Lost & Found Manager/
 │   │   ├── LostItem.java
 │   │   ├── FoundItem.java
 │   │   └── Claim.java
+│   │
 │   ├── service/
 │   │   ├── UserService.java
 │   │   ├── ItemService.java
 │   │   ├── MatchingService.java
 │   │   └── ClaimService.java
+│   │
 │   ├── util/
 │   │   └── FileManager.java
+│   │
 │   └── Main.java
+│
 ├── README.md
-└── statement.md
+├── statement.md
+└── .gitignore
 ```
 
----
-
-## 6. Requirements
-
-- **Java Development Kit (JDK):** Version 17 or later
-- **Terminal:** Command Prompt / PowerShell / Bash / VS Code Integrated Terminal
-- **Git:** (Required for cloning and submission)
+> **Note:** When the application runs from `src/`, a `src/data/` folder is generated automatically to store serialized `.dat` records.
 
 ---
 
-## 7. How to Run
+## 5. Prerequisites
 
-1. Open a terminal in the project root directory.
+- **Java Development Kit (JDK):** Version 17 or newer
+- **Terminal:** PowerShell, Command Prompt, Git Bash, or any IDE built-in terminal
+- **Git:** For version tracking and submission
 
-2. Navigate to the source folder:
+---
+
+## 6. How to Build & Run
+
+1. Open your terminal in the root project directory:
    ```bash
    cd src
    ```
 
-3. Compile all source files:
+2. Compile all source files across modules:
    ```bash
    javac model/*.java service/*.java util/*.java Main.java
    ```
 
-4. Run the application:
+3. Launch the app:
    ```bash
    java Main
    ```
 
 ---
 
-## 8. Application Workflow
+## 7. Typical Walkthrough
 
-1. **Register** a new user account.
-2. **Report** a lost item or found item.
-3. **View or search** active records.
-4. Run the **matching feature** to scan for possible matches.
-5. **Submit a claim** for a matching item.
-6. **Approve or reject** pending claims.
-7. Application state is automatically synchronized into the `data/` directory.
-
----
-
-## 9. Matching System
-
-The matching engine compares key attributes between reported lost and found items:
-
-| Attribute | Weight |
-| :--- | :--- |
-| **Category** | 25 points |
-| **Location** | 25 points |
-| **Color** | 20 points |
-| **Item Name** | 20 points |
-| **Description** | 10 points |
-| **Total Possible** | **100 points** |
-
-> **Note:** Items with a match confidence score of **$\ge 50\%$** are flagged and displayed as potential matches.
+1. **Register** a student user profile.
+2. **Post an item** under lost or found with relevant descriptors.
+3. **Browse or search** the database to check if someone has already posted about it.
+4. Run the **Match Finder** to let the program calculate similarities.
+5. If a match looks right, **submit a claim**.
+6. The finder or admin can **approve or reject** the claim.
+7. Everything saves automatically to disk upon completion.
 
 ---
 
-## 10. Data Persistence
+## 8. How the Match Engine Works
 
-The application uses native Java Object Serialization to persist user and item data between sessions.
+The matching algorithm compares lost reports against found listings using a weighted scoring system:
 
-The following files are generated automatically inside the `data/` directory:
+| Field | Weight | Description |
+| :--- | :---: | :--- |
+| **Category** | 25% | General classification (e.g., Electronics, Stationery) |
+| **Location** | 25% | Specific campus area (e.g., Library, Cafeteria) |
+| **Color** | 20% | Primary color match |
+| **Item Name** | 20% | Keyword overlap in the item title |
+| **Description** | 10% | Detailed notes match |
+| **Total** | **100%** | Full score potential |
 
-```text
-data/
-├── users.dat
-├── lost_items.dat
-├── found_items.dat
-└── claims.dat
-```
-
----
-
-## 11. Error Handling
-
-The application includes validation for:
-
-- Non-numeric and malformed inputs
-- Blank or empty field submissions
-- Duplicate user IDs and item IDs
-- Non-existent user, item, and claim references
-- Invalid menu selections
+Any pair scoring **$50\%$ or higher** is surfaced to the student as a probable match.
 
 ---
 
-## 12. Author
+## 9. Data Storage & Persistence
 
-**Programming in Java Project**  
-*Lost & Found Manager*
+The project relies on native Java Object Serialization. All active sessions write to binary files located under `src/data/`:
+
+- `users.dat` — Registered user profiles
+- `lost_items.dat` — Open lost item reports
+- `found_items.dat` — Open found item reports
+- `claims.dat` — Ongoing and resolved claim tickets
+
+Because state is committed to disk, you can close the terminal and pick up right where you left off.
+
+---
+
+## 10. Screenshots & Verification
+
+The `screenshots/` directory includes step-by-step visual proofs of the app in action:
+
+- Navigation through the main interactive menu
+- Registering a fresh user and validating duplicate detection
+- Submitting both lost and found records
+- Querying records with keyword search
+- Scoring results inside the matching utility
+- Processing a claim end-to-end
+- Showing data persisting across app restarts
+
+---
+
+## 11. Author
+
+- **Course:** Programming in Java
+- **Project:** Lost & Found Campus Management System
