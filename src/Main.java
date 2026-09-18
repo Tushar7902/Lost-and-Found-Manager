@@ -1,39 +1,27 @@
 import model.User;
 import model.LostItem;
 import model.FoundItem;
-
 import service.UserService;
 import service.ItemService;
 import service.MatchingService;
 import service.ClaimService;
-
 import util.FileManager;
-
 import java.util.Scanner;
-
 public class Main {
-
     private static Scanner scanner = new Scanner(System.in);
-
     private static UserService userService = new UserService();
     private static ItemService itemService = new ItemService();
     private static MatchingService matchingService = new MatchingService();
     private static ClaimService claimService = new ClaimService();
-
     public static void main(String[] args) {
-
         loadSavedData();
-
         boolean running = true;
-
         System.out.println("\n======================================");
         System.out.println("        LOST & FOUND MANAGER");
         System.out.println("======================================");
         System.out.println("  A Java-based Lost & Found System");
         System.out.println("======================================");
-
         while (running) {
-
             showMenu();
 
             int choice = readInt("Enter your choice: ");
@@ -94,7 +82,6 @@ public class Main {
         scanner.close();
     }
 
-    // ================= DATA =================
 
     private static void loadSavedData() {
 
@@ -136,8 +123,7 @@ public class Main {
         );
     }
 
-    // ================= MENU =================
-
+    
     private static void showMenu() {
 
         System.out.println("\n======================================");
@@ -156,7 +142,6 @@ public class Main {
         System.out.println("======================================");
     }
 
-    // ================= USER =================
 
     private static void registerUser() {
 
@@ -191,8 +176,6 @@ public class Main {
 
         saveAllData();
     }
-
-    // ================= LOST ITEM =================
 
     private static void reportLostItem() {
 
@@ -251,7 +234,6 @@ public class Main {
         saveAllData();
     }
 
-    // ================= FOUND ITEM =================
 
     private static void reportFoundItem() {
 
@@ -310,8 +292,6 @@ public class Main {
         saveAllData();
     }
 
-    // ================= CATEGORY =================
-
     private static String selectCategory() {
 
         while (true) {
@@ -366,7 +346,6 @@ public class Main {
         }
     }
 
-    // ================= COLOR =================
 
     private static String selectColor() {
 
@@ -426,7 +405,7 @@ public class Main {
         }
     }
 
-    // ================= LOCATION =================
+
 
     private static String selectLocation() {
 
@@ -486,7 +465,6 @@ public class Main {
         }
     }
 
-    // ================= SEARCH =================
 
     private static void searchItems() {
 
@@ -551,7 +529,6 @@ public class Main {
                 && text.toLowerCase().contains(keyword);
     }
 
-    // ================= MATCHING =================
 
     private static void findMatches() {
 
@@ -568,7 +545,6 @@ public class Main {
         );
     }
 
-    // ================= CLAIMS =================
 
     private static void manageClaims() {
 
@@ -691,7 +667,6 @@ public class Main {
         }
     }
 
-    // ================= INPUT VALIDATION =================
 
     private static int readInt(String message) {
 
